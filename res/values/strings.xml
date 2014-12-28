@@ -21,5 +21,17 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title">Title</string>
+    <string name="desc">Description</string>
+    <string name="overflow">Menu Overflow</string>
+    <string name="color_stripe">Color Stripe</string>
+    <string name="latest">Latest</string>
+    <string name="offers">Offers</string>
+    <string name="writers">Writers</string>
+    <string name="categories">Categories</string>
+    <string name="title_activity_product">ProductActivity</string>
+    <string name="title_activity_cart">CartActivity</string>
+    <string name="title_activity_account">AccountActivity</string>
+    <string name="title_activity_checkout">CheckoutActivity</string>
 
 </resources>

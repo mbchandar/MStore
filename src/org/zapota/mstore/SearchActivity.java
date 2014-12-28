@@ -1,4 +1,4 @@
-package com.zapota.mstore;
+package org.zapota.mstore;
 
 import android.app.Activity;
 import android.os.Bundle;

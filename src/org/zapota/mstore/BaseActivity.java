@@ -1,4 +1,4 @@
-package com.zapota.mstore;
+package org.zapota.mstore;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -17,6 +17,7 @@ public class BaseActivity extends SlidingFragmentActivity {
 	public BaseActivity(int titleRes) {
 		mTitleRes = titleRes;
 	}
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,9 +44,10 @@ public class BaseActivity extends SlidingFragmentActivity {
 		sm.setShadowDrawable(R.drawable.shadow);
 		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		sm.setFadeDegree(0.35f);
-		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);				
+	    getActionBar().setHomeButtonEnabled(true);
 	}
 
 	@Override

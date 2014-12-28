@@ -1,11 +1,10 @@
-package com.zapota.mstore;
+package org.zapota.mstore;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ContentResolver;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -29,7 +28,6 @@ import android.widget.TextView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,8 +59,6 @@ public class LoginActivity extends Activity  implements
 	private EditText mPasswordView;
 	private View mProgressView;
 	private View mEmailLoginFormView;
-	private SignInButton mPlusSignInButton;
-	private View mSignOutButtons;
 	private View mLoginFormView;
 
 	@Override
@@ -265,7 +261,6 @@ public class LoginActivity extends Activity  implements
 				ContactsContract.CommonDataKinds.Email.IS_PRIMARY, };
 
 		int ADDRESS = 0;
-		int IS_PRIMARY = 1;
 	}
 
 	private void addEmailsToAutoComplete(List<String> emailAddressCollection) {

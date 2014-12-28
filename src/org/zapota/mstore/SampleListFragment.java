@@ -1,4 +1,4 @@
-package com.zapota.mstore;
+package org.zapota.mstore;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -40,17 +40,8 @@ public class SampleListFragment extends ListFragment {
 		
 		switch (position) {
 		case 0:
-			newContent = new Home();
-			break;
-		case 1:
-			newContent = new Fragment2();
-			break;
-		case 2:
-			newContent = new Fragment3();
-			break;
-		case 3:
-			newContent = new Fragment4();
-			break;
+
+		
 
 		}
 		if (newContent != null)

@@ -3,6 +3,7 @@ package org.zapota.mstore;
 import org.zapota.mstore.util.SuperAwesomeCardFragment;
 
 import com.astuetz.PagerSlidingTabStrip;
+
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,15 +47,9 @@ public class CategoryActivity extends BaseActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		return super.onOptionsItemSelected(item);	    		
 	}
+	
 	
 	private Drawable.Callback drawableCallback = new Drawable.Callback() {
 		@Override

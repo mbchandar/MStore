@@ -90,6 +90,10 @@
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        <activity
+            android:name=".CategoryListActivity"
+            android:label="@string/title_activity_category_list" >
+        </activity>
     </application>
 
 </manifest>

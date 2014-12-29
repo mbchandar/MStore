@@ -14,13 +14,11 @@ public class MyApplication extends Application {
 		super.onCreate();
 		
 		// UNIVERSAL IMAGE LOADER SETUP
-				@SuppressWarnings("deprecation")
 				DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
 						.cacheInMemory(true)
 						.imageScaleType(ImageScaleType.EXACTLY)
 						.displayer(new FadeInBitmapDisplayer(300)).build();
 
-				@SuppressWarnings("deprecation")
 				ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 						getApplicationContext())
 						.defaultDisplayImageOptions(defaultOptions)

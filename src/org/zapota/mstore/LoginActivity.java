@@ -3,7 +3,6 @@ package org.zapota.mstore;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
@@ -27,7 +26,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.SignInButton;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +38,12 @@ import java.util.List;
  * /android/getting-started#step_1_enable_the_google_api and follow the steps in
  * "Step 1" to create an OAuth 2.0 client for your package.
  */
-public class LoginActivity extends Activity  implements
+public class LoginActivity extends BaseActivity  implements
 		LoaderCallbacks<Cursor> {
+
+	public LoginActivity() {
+		super(R.string.app_name);
+	}	
 
 	/**
 	 * A dummy authentication store containing known user names and passwords.
@@ -62,7 +64,7 @@ public class LoginActivity extends Activity  implements
 	private View mLoginFormView;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.activity_login);

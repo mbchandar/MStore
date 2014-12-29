@@ -1,5 +1,6 @@
 package org.zapota.mstore;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
@@ -52,12 +53,39 @@ public class BaseActivity extends SlidingFragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			toggle();
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		item.getItemId();
+		
+		 switch (item.getItemId()) {
+		
+	        case R.id.action_login:	       
+	        	return loadActivity(LoginActivity.class);
+	            
+	        case R.id.action_account:
+	        	return loadActivity(AccountActivity.class);
+	        	
+	        case R.id.action_category:
+	        	return loadActivity(CategoryActivity.class);
+	        		        
+	        case R.id.action_category_list:
+	        	return loadActivity(CategoryListActivity.class);
+	        	
+	        case R.id.action_settings:
+	        	return loadActivity(SettingsActivity.class);
+	        	
+	        case R.id.action_shopping_cart:
+	        	return loadActivity(CartActivity.class);
+	        	
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
+	
+	private boolean loadActivity(Class<?> cls){
+		Intent intent = new Intent(getBaseContext(), cls);         
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent); 
+        return true;
+	}
+	
 
 }

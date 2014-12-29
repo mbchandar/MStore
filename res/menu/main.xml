@@ -16,16 +16,44 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
         android:icon="@drawable/shopping_cart_48"
-        android:title="@string/action_shopping_cart"/>     
+        android:title="@string/action_shopping_cart"/>
+
+   <item
+        android:id="@+id/action_offers"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_offers"/>
+   	
+    <item
+        android:id="@+id/action_login"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_login"/>
+    
+   	<item
+        android:id="@+id/action_account"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_account"/>
+    
+   	<item
+        android:id="@+id/action_category_list"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_category_list"/>
+   	
+   	<item
+        android:id="@+id/action_category"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_category"/>
+   	
+ 
+    
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
-	<item
-        android:id="@+id/action_login"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_login"/>
     
 </menu>

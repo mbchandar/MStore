@@ -1,7 +1,5 @@
 package org.zapota.mstore;
 
-import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 
-public class CheckoutActivity extends Activity {
+public class CheckoutActivity extends BaseActivity {
 
+	public CheckoutActivity() {
+		super(R.string.app_name);
+	}
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_checkout);
 		if (savedInstanceState == null) {

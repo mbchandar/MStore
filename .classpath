@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="F:/workspace/android app libraries/gson-2.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="F:/workspace/android app libraries/okhttp-2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="F:/workspace/android app libraries/okio-1.0.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="F:/workspace/android app libraries/universal-image-loader-1.9.3.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="/google-play-services_lib"/>
+	<classpathentry kind="src" path="/SlidingMenu"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="I:/adt-bundle-windows-x86-20140624/sdk/platforms/android-21/android.jar">
 		<attributes>
@@ -15,6 +19,5 @@
 			<accessrule kind="nonaccessible" pattern="com/android/internal/**"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="src" path="/SlidingMenu"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

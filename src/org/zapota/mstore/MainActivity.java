@@ -35,6 +35,8 @@ public class MainActivity extends BaseActivity {
 	private int currentColor = 0xFF666666;
 	
 	private CardUI mCardView;
+
+	private Fragment mContent;
 	
 	public MainActivity() {
 		super(R.string.app_name);
@@ -44,10 +46,20 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
+				
 	    setContentView(R.layout.activity_main);
 	    
+	    if (savedInstanceState != null)
+			mContent = getSupportFragmentManager().getFragment(
+					savedInstanceState, "mContent");
+
+		if (mContent == null)
+			mContent = new Home();
+
+		// set the Behind View
+		setBehindContentView(R.layout.menu_frame);
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.menu_frame, new SampleListFragment()).commit();
 	    
 	 // init CardView
 	 		mCardView = (CardUI) findViewById(R.id.cardsview);
@@ -117,67 +129,11 @@ public class MainActivity extends BaseActivity {
 							"You can set any color for the title and any other color for the left stripe",
 							"#f2a400", "#9d36d0", false, false));
 
-			mCardView
-					.addCardToLastStack(new MyPlayCard(
-							"Set Clickable or Not",
-							"You can easily implement an onClickListener on any card, but the last boolean parameter of the PlayCards allow you to toggle the clickable background.",
-							"#4ac925", "#222222", true, true));
+			 
 
 			// draw cards
 			mCardView.refresh();
-	    /*
-	    // Initialize the ViewPager and set an adapter
-	    ViewPager pager = (ViewPager) findViewById(R.id.mypager);
-	    pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-
-	    // Bind the tabs to the ViewPager
-	    tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-	    tabs.setViewPager(pager);
 	    
-	    changeColor(currentColor);
-	    
-	    tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-		pager = (ViewPager) findViewById(R.id.mypager);
-		adapter = new MyPagerAdapter(getSupportFragmentManager());
-		
-		pager.setAdapter(adapter);
-
-		final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
-				.getDisplayMetrics());
-		pager.setPageMargin(pageMargin);
-
-		tabs.setViewPager(pager);
-
-		
-		
-		if (savedInstanceState != null)
-			mContent = getSupportFragmentManager().getFragment(
-					savedInstanceState, "mContent");
-
-		if (mContent == null)
-			mContent = new Home();
-
-		// set the Above View
-		setContentView(R.layout.content_frame);
-		getSupportFragmentManager().beginTransaction()
-		.replace(R.id.content_frame, mContent).commit();
-
-		// set the Behind View
-		setBehindContentView(R.layout.menu_frame);
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.menu_frame, new SampleListFragment()).commit();
-		
-			
-		setContentView(R.layout.content_frame);
-		getSupportFragmentManager().beginTransaction()
-		.replace(R.id.content_frame, TabbedFragment.newInstance()).commit();
-		
-		setBehindContentView(R.layout.menu_frame);
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.menu_frame, new SampleListFragment()).commit();
-			
-
-		*/
 		
 	
 	}
@@ -255,7 +211,7 @@ public class MainActivity extends BaseActivity {
 
 	public void switchContent(Fragment fragment) {
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.content_frame, fragment).commit();
+				.replace(R.id.llMain, fragment).commit();
 		getSlidingMenu().showContent();
 	}
 	

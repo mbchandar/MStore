@@ -24,6 +24,9 @@ public class BaseActivity extends SlidingFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		getActionBar().setDisplayHomeAsUpEnabled(true);				
+	    getActionBar().setHomeButtonEnabled(true);
+	    
 		setTitle(mTitleRes);
 
 		// set the Behind View
@@ -47,8 +50,7 @@ public class BaseActivity extends SlidingFragmentActivity {
 		sm.setFadeDegree(0.35f);
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);				
-	    getActionBar().setHomeButtonEnabled(true);
+		
 	}
 
 	@Override
@@ -56,7 +58,9 @@ public class BaseActivity extends SlidingFragmentActivity {
 		item.getItemId();
 		
 		 switch (item.getItemId()) {
-		
+		 	case android.R.id.home:
+				toggle();
+				return true;			
 	        case R.id.action_login:	       
 	        	return loadActivity(LoginActivity.class);
 	            

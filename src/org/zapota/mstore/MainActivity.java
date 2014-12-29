@@ -88,54 +88,11 @@ public class MainActivity extends BaseActivity {
 
 				}
 			});
-			androidViewsCard.setOnLongClickListener(new OnLongClickListener() {    		
-	    		
-				public boolean onLongClick(View v) {
-					Toast.makeText(v.getContext(), "This is a long click", Toast.LENGTH_SHORT).show();
-					return true;
-				}
-			
-			});
-			
-			Intent intent = new Intent(Intent.ACTION_VIEW);
-			intent.setData(Uri.parse("http://www.androidviews.net/"));
-
-			mCardView.addCardToLastStack(androidViewsCard);
-*/
-			
-			
-			CardStack stackPlay = new CardStack();
-			stackPlay.setTitle("GOOGLE PLAY CARDS");
-			mCardView.addStack(stackPlay);
-
-			// add one card, and then add another one to the last stack.
-			mCardView.addCard(new MyCard("Google Play Cards"));
-			mCardView.addCardToLastStack(new MyCard("By Androguide & GadgetCheck"));
-
-			mCardView.addCardToLastStack(new MyPlayCard("Google Play",
-					"This card mimics the new Google play cards look", "#33b6ea",
-					"#33b6ea", true, false));
-
-			mCardView
-					.addCardToLastStack(new MyPlayCard(
-							"Menu Overflow",
-							"The PlayCards allow you to easily set a menu overflow on your card.\nYou can also declare the left stripe's color in a String, like \"#33B5E5\" for the holo blue color, same for the title color.",
-							"#e00707", "#e00707", false, true));
-
-			// add one card
-			mCardView
-					.addCard(new MyPlayCard(
-							"Different Colors for Title & Stripe",
-							"You can set any color for the title and any other color for the left stripe",
-							"#f2a400", "#9d36d0", false, false));
-
-			 
+						
+			*/
 
 			// draw cards
-			mCardView.refresh();
-	    
-		
-	
+			mCardView.refresh();	    		
 	}
 
    

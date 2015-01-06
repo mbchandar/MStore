@@ -1,12 +1,20 @@
 package org.zapota.mstore;
 
-import android.app.Fragment;
+import java.io.IOException;
+
+import org.zapota.mstore.helper.BusProvider;
+import org.zapota.mstore.helper.CSHTTPClient;
+import org.zapota.mstore.helper.LoadCategoryProducts;
+
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 public class CartActivity extends BaseActivity {
 
@@ -17,12 +25,28 @@ public class CartActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cart);
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+		setContentView(R.layout.activity_cart);	
+		BusProvider.getInstance().register(this);
+		
+		 
+		OkHttpClient client = CSHTTPClient.getClient();
+		Request request = new Request.Builder().url("http://192.168.1.10/cs/kancart/index.php?method=kancart.shoppingcart.get").build();
+
+		
+		try {
+			Response response = client.newCall(request).execute();
+		
+			
+			String responses =response.body().string();
+			
+			Log.d("[SHOPPINGCART]", response.header("token"));
+			Log.d("[SHOPPINGCART]", responses);
+		} catch (IOException e) {			
+			e.printStackTrace();
 		}
+				
 	}
+	 
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -37,20 +61,5 @@ public class CartActivity extends BaseActivity {
 	}
 	
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_cart, container,
-					false);
-			return rootView;
-		}
-	}
+	 
 }

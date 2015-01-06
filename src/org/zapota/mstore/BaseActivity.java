@@ -1,7 +1,13 @@
 package org.zapota.mstore;
 
+import org.zapota.mstore.helper.AlertDialogManager;
+import org.zapota.mstore.helper.BusProvider;
+import org.zapota.mstore.helper.ConnectionDetector;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.MenuItem;
@@ -14,6 +20,15 @@ public class BaseActivity extends SlidingFragmentActivity {
 	private int mTitleRes;
 	protected ListFragment mFrag;
 
+	// Connection detector
+    ConnectionDetector cd;
+     
+    // Alert dialog manager
+    AlertDialogManager alert = new AlertDialogManager();
+     
+    // Progress Dialog
+    private ProgressDialog pDialog;
+ 
 	
 	public BaseActivity(int titleRes) {
 		mTitleRes = titleRes;
@@ -24,6 +39,24 @@ public class BaseActivity extends SlidingFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		cd = new ConnectionDetector(getApplicationContext());
+        
+        // Check for internet connection
+        if (!cd.isConnectingToInternet()) {
+            // Internet Connection is not present
+            alert.showAlertDialog(this, "Internet Connection Error",
+                    "Please connect to working Internet connection", false);
+            // stop executing code by return
+            return;
+        }
+ 
+
+		 // Just for testing, allow network access in the main thread
+		    // NEVER use this is productive code
+		    StrictMode.ThreadPolicy policy = new StrictMode.
+		    ThreadPolicy.Builder().permitAll().build();
+		    StrictMode.setThreadPolicy(policy); 
+		    
 		getActionBar().setDisplayHomeAsUpEnabled(true);				
 	    getActionBar().setHomeButtonEnabled(true);
 	    
@@ -84,12 +117,19 @@ public class BaseActivity extends SlidingFragmentActivity {
 	    }
 	}
 	
+	public void onDestroy() {
+		super.onDestroy();
+		BusProvider.getInstance().unregister(this);	
+	};
+	
 	private boolean loadActivity(Class<?> cls){
 		Intent intent = new Intent(getBaseContext(), cls);         
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent); 
         return true;
 	}
+
+ 
 	
 
 }

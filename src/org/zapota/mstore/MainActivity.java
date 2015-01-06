@@ -1,30 +1,29 @@
 package org.zapota.mstore;
 
 
-import org.zapota.mstore.util.SuperAwesomeCardFragment;
+import java.io.IOException;
 
+import org.zapota.api.products.Item;
+import org.zapota.api.products.Items;
 import com.astuetz.PagerSlidingTabStrip;
-import com.cardsui.example.MyCard;
-import com.cardsui.example.MyImageCard;
-import com.cardsui.example.MyPlayCard;
+import com.cardsui.example.ProductCard;
 import com.fima.cardsui.objects.CardStack;
 import com.fima.cardsui.views.CardUI;
+import com.google.gson.Gson;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.TransitionDrawable;
-import android.os.Build;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import android.view.View.OnClickListener;
 
 public class MainActivity extends BaseActivity {
 
@@ -38,6 +37,10 @@ public class MainActivity extends BaseActivity {
 
 	private Fragment mContent;
 	
+	private final OkHttpClient client = new OkHttpClient();
+
+	private final Gson gson = new Gson();
+	
 	public MainActivity() {
 		super(R.string.app_name);
 	}
@@ -49,13 +52,7 @@ public class MainActivity extends BaseActivity {
 				
 	    setContentView(R.layout.activity_main);
 	    
-	    if (savedInstanceState != null)
-			mContent = getSupportFragmentManager().getFragment(
-					savedInstanceState, "mContent");
-
-		if (mContent == null)
-			mContent = new Home();
-
+	   
 		// set the Behind View
 		setBehindContentView(R.layout.menu_frame);
 		getSupportFragmentManager().beginTransaction()
@@ -71,8 +68,47 @@ public class MainActivity extends BaseActivity {
 
 			// add AndroidViews Cards
 			//getResources().getString(R.string.latest)
-			mCardView.addCard(new MyImageCard("மகாபாரதம்","ராஜாஜி எழுதிய மகாபாரதம்" , "http://cdn.chennaishopping.com/images/175x175/mahabaratham-rajaji.jpg"));			
-			mCardView.addCardToLastStack(new MyImageCard("Time","Stephen Hawkings Time" , "http://cdn.chennaishopping.com/images/175x175/kaalam-stephen-hawkings.jpg"));
+			
+			
+			 	
+			Request request = new Request.Builder()
+			.url("http://192.168.1.10/cs/kancart/index.php?method=kancart.items.get&cid=15")
+			.build();
+				
+			Response response;
+			try {
+				response = client.newCall(request).execute();
+				
+				Items items = gson.fromJson(response.body().string(),
+						Items.class);		
+				
+				
+				for (Item item : items.getInfo().getItems()) {
+					ProductCard pc = new ProductCard(Integer.parseInt(item.getItemId()), item.getItemTitle(), item.getPrices().getBasePrice().toString() , item.getThumbnailPicUrl());
+					
+					final String item_url = item.getItemUrl();
+					pc.setOnClickListener(new OnClickListener() {
+						public void onClick(View v) {
+							Intent intent = new Intent(Intent.ACTION_VIEW);
+							intent.setData(Uri.parse(item_url));
+							startActivity(intent);
+						}
+					});
+					
+					mCardView.addCard(pc);
+				}
+							
+				//mCardView.addCard(new ProductCard("Time","Stephen Hawkings Time" , "http://cdn.chennaishopping.com/images/175x175/kaalam-stephen-hawkings.jpg"));
+				
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			//Log.d("ANSWER", response.body().string());
+
 			
 			//mCardView.addCard(new MyCard("Get the CardsUI view"));
 			//mCardView.addCardToLastStack(new MyCard("for Android at"));
@@ -109,62 +145,7 @@ public class MainActivity extends BaseActivity {
 		return super.onOptionsItemSelected(item);	    		
 	}
 	
-	
-	private void changeColor(int newColor) {
-
-		tabs.setIndicatorColor(newColor);
-
-		// change ActionBar color just if an ActionBar is available
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-
-			Drawable colorDrawable = new ColorDrawable(newColor);
-			Drawable bottomDrawable = getResources().getDrawable(R.drawable.actionbar_bottom);
-			LayerDrawable ld = new LayerDrawable(new Drawable[] { colorDrawable, bottomDrawable });
-
-			if (oldBackground == null) {
-
-				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
-					ld.setCallback(drawableCallback);
-				} else {
-					getActionBar().setBackgroundDrawable(ld);
-				}
-
-			} else {
-
-				TransitionDrawable td = new TransitionDrawable(new Drawable[] { oldBackground, ld });
-
-				// workaround for broken ActionBarContainer drawable handling on
-				// pre-API 17 builds
-				// https://github.com/android/platform_frameworks_base/commit/a7cc06d82e45918c37429a59b14545c6a57db4e4
-				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
-					td.setCallback(drawableCallback);
-				} else {
-					getActionBar().setBackgroundDrawable(td);
-				}
-
-				td.startTransition(200);
-
-			}
-
-			oldBackground = ld;
-
-			// http://stackoverflow.com/questions/11002691/actionbar-setbackgrounddrawable-nulling-background-from-thread-handler
-			getActionBar().setDisplayShowTitleEnabled(false);
-			getActionBar().setDisplayShowTitleEnabled(true);
-
-		}
-
-		currentColor = newColor;
-
-	}
-
-	public void onColorClicked(View v) {
-
-		int color = Color.parseColor(v.getTag().toString());
-		changeColor(color);
-
-	}
-	
+	 
 
 	public void switchContent(Fragment fragment) {
 		getSupportFragmentManager().beginTransaction()
@@ -172,46 +153,6 @@ public class MainActivity extends BaseActivity {
 		getSlidingMenu().showContent();
 	}
 	
-	private Drawable.Callback drawableCallback = new Drawable.Callback() {
-		@Override
-		public void invalidateDrawable(Drawable who) {
-			getActionBar().setBackgroundDrawable(who);
-		}
-
-		@Override
-		public void scheduleDrawable(Drawable who, Runnable what, long when) {
-			handler.postAtTime(what, when);
-		}
-
-		@Override
-		public void unscheduleDrawable(Drawable who, Runnable what) {
-			handler.removeCallbacks(what);
-		}
-	};
-
-	public class MyPagerAdapter extends FragmentPagerAdapter {
-
-		private final String[] TITLES = { "Categories", "Home", "Top Paid", "Top Free", "Top Grossing", "Top New Paid",
-				"Top New Free", "Trending" };
-
-		public MyPagerAdapter(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public CharSequence getPageTitle(int position) {
-			return TITLES[position];
-		}
-
-		@Override
-		public int getCount() {
-			return TITLES.length;
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			return SuperAwesomeCardFragment.newInstance(position);
-		}
-
-	}
+	
+	 
 }

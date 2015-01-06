@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+  
+    <!-- Album id / Hidden by default -->
+  <TextView
+        android:id="@+id/categories_id"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+     
+    <TextView
+        android:id="@+id/isparent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+    <!-- Album Name -->
+    <TextView
+        android:id="@+id/category_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dip"
+        android:textColor="#000000"
+        android:paddingTop="15dip"
+        android:paddingBottom="15dip"
+        android:paddingLeft="10dip"        />
+    
+   <ImageView
+    android:id="@+id/arrow_right"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"    
+    
+    />
+  
+</LinearLayout>

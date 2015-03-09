@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.CookieManager;
 
 public class CartActivity extends BaseActivity {
 
@@ -30,16 +31,12 @@ public class CartActivity extends BaseActivity {
 		
 		 
 		OkHttpClient client = CSHTTPClient.getClient();
+		
 		Request request = new Request.Builder().url("http://192.168.1.10/cs/kancart/index.php?method=kancart.shoppingcart.get").build();
-
 		
 		try {
-			Response response = client.newCall(request).execute();
-		
-			
-			String responses =response.body().string();
-			
-			Log.d("[SHOPPINGCART]", response.header("token"));
+			Response response = client.newCall(request).execute();					
+			String responses =response.body().string();						
 			Log.d("[SHOPPINGCART]", responses);
 		} catch (IOException e) {			
 			e.printStackTrace();

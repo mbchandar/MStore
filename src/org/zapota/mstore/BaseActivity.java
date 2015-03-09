@@ -4,7 +4,6 @@ import org.zapota.mstore.helper.AlertDialogManager;
 import org.zapota.mstore.helper.BusProvider;
 import org.zapota.mstore.helper.ConnectionDetector;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -26,11 +25,7 @@ public class BaseActivity extends SlidingFragmentActivity {
     // Alert dialog manager
     AlertDialogManager alert = new AlertDialogManager();
      
-    // Progress Dialog
-    private ProgressDialog pDialog;
- 
-	
-	public BaseActivity(int titleRes) {
+    public BaseActivity(int titleRes) {
 		mTitleRes = titleRes;
 	}
 	

@@ -42,5 +42,18 @@
     <string name="title_activity_account">AccountActivity</string>
     <string name="title_activity_checkout">CheckoutActivity</string>
     <string name="title_activity_category_list">CategoryListActivity</string>
+    <string name="quantity">Quantity</string>
+
+    
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 
 </resources>

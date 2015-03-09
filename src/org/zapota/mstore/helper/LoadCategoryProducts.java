@@ -13,7 +13,6 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 public class LoadCategoryProducts extends AsyncTask<String, Void, String> {
-	private static final String TAG = "LoadCategoryProducts";
 	private final Gson gson = new Gson();
 	
 	@Override
@@ -23,8 +22,7 @@ public class LoadCategoryProducts extends AsyncTask<String, Void, String> {
 		Request request = new Request.Builder().url(ulr[0]).build();
 
 		try {
-			response = client.newCall(request).execute();
-		 
+			response = client.newCall(request).execute();		 
 			return response.body().string();
 		} catch (IOException e) {			
 			e.printStackTrace();

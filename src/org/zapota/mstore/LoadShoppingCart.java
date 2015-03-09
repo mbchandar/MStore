@@ -16,7 +16,6 @@ import com.squareup.okhttp.Response;
 
  
 public class LoadShoppingCart extends AsyncTask<String, Void, String> {
-	private static final String TAG = "LoadCategoryProducts";
 	private final Gson gson = new Gson();
 	
 	@Override

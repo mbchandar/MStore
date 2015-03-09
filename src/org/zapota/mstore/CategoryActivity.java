@@ -3,7 +3,6 @@ package org.zapota.mstore;
 import org.zapota.mstore.util.SuperAwesomeCardFragment;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.fima.cardsui.views.CardUI;
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import android.graphics.drawable.Drawable;
@@ -22,12 +21,6 @@ public class CategoryActivity extends BaseActivity {
 	
 	private final Handler handler = new Handler();
 
-	// Album id
-    private String category_id; 
-    private String category_name;
-    
-    private CardUI mCardView;
-    
 	private final OkHttpClient client = new OkHttpClient();
 
 	private final Gson gson = new Gson();

@@ -44,11 +44,10 @@ public class CategoryListActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_category_list);
-				
-	
+		
 		BusProvider.getInstance().register(this);
 		
-		new BackgroundWebRunner().execute("http://192.168.1.10/cs/kancart/index.php?method=kancart.category.get&parent_cid=2");
+		new BackgroundWebRunner().execute("http://192.168.1.4/cs/kancart/index.php?method=kancart.category.get&parent_cid=3");
 				 
 	}
 		
@@ -56,7 +55,7 @@ public class CategoryListActivity extends BaseActivity {
 	@Subscribe
 	public void dataReceived(String output) {
 		Log.d("ANSWER", output);
-		ArrayList<HashMap<String, String>> categories = new ArrayList<HashMap<String, String>>();
+		new ArrayList<HashMap<String, String>>();
 		
 		ArrayList<Integer> categories_id = new ArrayList<Integer>();
 		ArrayList<String> categories_name = new ArrayList<String>();						 

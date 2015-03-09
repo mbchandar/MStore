@@ -1,16 +1,10 @@
 package org.zapota.mstore.helper;
 
-import java.io.IOException;
-import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 
 
 
-
-import java.net.URI;
-import java.util.List;
-import java.util.Map;
 
 import com.squareup.okhttp.OkHttpClient;
 

@@ -9,7 +9,6 @@ import com.cardsui.example.ProductCard;
 import com.fima.cardsui.objects.CardStack;
 import com.fima.cardsui.views.CardUI;
 import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Response;
 import com.squareup.otto.Subscribe;
 
 import android.content.Intent;
@@ -51,7 +50,7 @@ public class NewArrivalsFragment extends Fragment {
         category_name = i.getStringExtra("category_name");
         
 		BusProvider.getInstance().register(this);				
-		new LoadCategoryProducts().execute("http://192.168.1.10/cs/kancart/index.php?method=kancart.items.get&cid="+category_id);
+		new LoadCategoryProducts().execute("http://192.168.1.4/cs/kancart/index.php?method=kancart.items.get&cid="+category_id);
 		
 	}
 	
@@ -77,9 +76,6 @@ public class NewArrivalsFragment extends Fragment {
 		stack2.setTitle(getResources().getString(R.string.latest));
 		mCardView.addStack(stack2);
 
-		Response response;
-	//	Items items = gson.fromJson(output,				Items.class);					
-		
 		for (Item item : items.getInfo().getItems()) {
 			ProductCard pc = new ProductCard(Integer.parseInt(item.getItemId()),item.getItemTitle(), item.getPrices().getBasePrice().toString() , item.getThumbnailPicUrl());			
 			

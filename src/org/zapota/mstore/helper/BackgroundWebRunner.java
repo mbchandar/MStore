@@ -10,8 +10,6 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 public class BackgroundWebRunner extends AsyncTask<String, Void, String> {
-	private static final String TAG = "BackgroundWebRunner";
-	
 	@Override
 	protected String doInBackground(String... ulr) {
 		Response response = null;

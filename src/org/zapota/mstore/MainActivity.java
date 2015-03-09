@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import org.zapota.api.products.Item;
 import org.zapota.api.products.Items;
-import com.astuetz.PagerSlidingTabStrip;
 import com.cardsui.example.ProductCard;
 import com.fima.cardsui.objects.CardStack;
 import com.fima.cardsui.views.CardUI;
@@ -15,7 +14,6 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,14 +27,8 @@ public class MainActivity extends BaseActivity {
 
 	private final Handler handler = new Handler();
 
-	private PagerSlidingTabStrip tabs;
-	private Drawable oldBackground = null;
-	private int currentColor = 0xFF666666;
-	
 	private CardUI mCardView;
 
-	private Fragment mContent;
-	
 	private final OkHttpClient client = new OkHttpClient();
 
 	private final Gson gson = new Gson();

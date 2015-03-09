@@ -8,11 +8,9 @@ import org.zapota.mstore.helper.CSHTTPClient;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -72,7 +70,7 @@ public class ProductCard extends Card {
 				
 				Response response = null;
 				OkHttpClient client = CSHTTPClient.getClient();
-				Request request = new Request.Builder().url("http://192.168.1.10/cs/kancart/index.php?method=kancart.shoppingcart.add&item_id="+ strProductid+"&qty=1").build();
+				Request request = new Request.Builder().url("http://192.168.1.4/cs/kancart/index.php?method=kancart.shoppingcart.add&item_id="+ strProductid+"&qty=1").build();
 
 				try {
 					response = client.newCall(request).execute();

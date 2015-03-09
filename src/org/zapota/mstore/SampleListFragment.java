@@ -35,17 +35,8 @@ public class SampleListFragment extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-
-		Fragment newContent = null;
 		
-		switch (position) {
-		case 0:
-
 		
-
-		}
-		if (newContent != null)
-			switchFragment(newContent);
 	}
 
 	private class SampleItem {

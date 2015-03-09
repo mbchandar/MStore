@@ -20,6 +20,7 @@ public class CSHTTPClient {
 	    	cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
 	    	client.setCookieHandler(cookieManager);	    		    		    	 	    		    		    	
 	    	CSHTTPClient.setHttpclient(client);
+	    	
 	    }
 	    return httpclient;
 	}

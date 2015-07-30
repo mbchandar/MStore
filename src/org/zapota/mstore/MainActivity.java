@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import org.zapota.api.products.Item;
 import org.zapota.api.products.Items;
+import org.zapota.mstore.util.API;
+
 import com.cardsui.example.ProductCard;
 import com.fima.cardsui.objects.CardStack;
 import com.fima.cardsui.views.CardUI;
@@ -64,7 +66,7 @@ public class MainActivity extends BaseActivity {
 			
 			 	
 			Request request = new Request.Builder()
-			.url("http://192.168.1.10/cs/kancart/index.php?method=kancart.items.get&cid=15")
+			.url( API.URL + "method=kancart.items.get&cid=15")
 			.build();
 				
 			Response response;

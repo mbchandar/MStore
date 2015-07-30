@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.zapota.mstore.helper.BackgroundWebRunner;
 import org.zapota.mstore.helper.BusProvider;
+import org.zapota.mstore.util.API;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -47,7 +48,7 @@ public class CategoryListActivity extends BaseActivity {
 		
 		BusProvider.getInstance().register(this);
 		
-		new BackgroundWebRunner().execute("http://192.168.1.4/cs/kancart/index.php?method=kancart.category.get&parent_cid=3");
+		new BackgroundWebRunner().execute(API.URL +"method=kancart.category.get&parent_cid=3");
 				 
 	}
 		

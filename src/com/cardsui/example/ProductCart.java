@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.zapota.mstore.CartActivity;
 import org.zapota.mstore.R;
 import org.zapota.mstore.helper.CSHTTPClient;
+import org.zapota.mstore.util.API;
 
 import android.content.Context;
 import android.content.Intent;
@@ -64,11 +65,11 @@ public class ProductCart extends Card {
 			@Override
 			public void onClick(View v) {
 								
-				//new LoadCategoryProducts().execute("http://192.168.1.10/cs/kancart/index.php?method=kancart.shoppingcart.add&item_id="+ strProductid );
+			
 				
 				Response response = null;
 				OkHttpClient client = CSHTTPClient.getClient();
-				Request request = new Request.Builder().url("http://192.168.1.4/cs/kancart/index.php?method=kancart.shoppingcart.remove&cart_item_id="+ strProductid).build();
+				Request request = new Request.Builder().url(API.URL + "method=kancart.shoppingcart.remove&cart_item_id="+ strProductid).build();
 
 				try {
 					response = client.newCall(request).execute();				 

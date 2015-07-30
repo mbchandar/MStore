@@ -4,6 +4,7 @@ import org.zapota.api.products.Item;
 import org.zapota.api.products.Items;
 import org.zapota.mstore.helper.BusProvider;
 import org.zapota.mstore.helper.LoadCategoryProducts;
+import org.zapota.mstore.util.API;
 
 import com.cardsui.example.ProductCard;
 import com.fima.cardsui.objects.CardStack;
@@ -50,7 +51,7 @@ public class NewArrivalsFragment extends Fragment {
         category_name = i.getStringExtra("category_name");
         
 		BusProvider.getInstance().register(this);				
-		new LoadCategoryProducts().execute("http://192.168.1.4/cs/kancart/index.php?method=kancart.items.get&cid="+category_id);
+		new LoadCategoryProducts().execute(API.URL + "method=kancart.items.get&cid="+category_id);
 		
 	}
 	

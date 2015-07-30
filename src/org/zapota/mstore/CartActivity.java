@@ -10,6 +10,7 @@ import org.zapota.api.shoppingcart.CartItem;
 import org.zapota.api.shoppingcart.ShoppingCart;
 import org.zapota.mstore.helper.BusProvider;
 import org.zapota.mstore.helper.CSHTTPClient;
+import org.zapota.mstore.util.API;
 
 import com.cardsui.example.ProductCard;
 import com.cardsui.example.ProductCart;
@@ -55,7 +56,7 @@ public class CartActivity extends BaseActivity {
 				
 		setContentView(R.layout.activity_cart);	
 		BusProvider.getInstance().register(this);				 
-		new LoadCartItemsTask().execute("http://192.168.1.4/cs/kancart/index.php?method=kancart.shoppingcart.get");		
+		new LoadCartItemsTask().execute(API.URL + "method=kancart.shoppingcart.get");		
 				
 	}
 	

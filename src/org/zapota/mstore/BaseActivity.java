@@ -18,6 +18,8 @@ public class BaseActivity extends SlidingFragmentActivity {
 
 	private int mTitleRes;
 	protected ListFragment mFrag;
+	
+	
 
 	// Connection detector
     ConnectionDetector cd;
